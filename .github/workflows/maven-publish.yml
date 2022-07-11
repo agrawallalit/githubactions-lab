@@ -32,15 +32,13 @@ jobs:
     - name: Build and Deploy with Maven
       run: |
         #env
-        echo "$tag"
+        echo "${{ steps.tags.outputs.tag }}"
         echo "$newtag"
+        mvn versions:set -DnewVersion="$newtag"-SNAPSHOT
+        mvn -B package --file pom.xml
+        mvn deploy -s $GITHUB_WORKSPACE/settings.xml
 
       env:
         tag: ${{ steps.tags.outputs.tag }}
         newtag: ${{ steps.tags.outputs.new_tag }}
-      
-
-#    - name: Publish to GitHub Packages Apache Maven
-#      run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
-#      env:
-#        GITHUB_TOKEN: ${{ github.token }}
+        GITHUB_TOKEN: ${{ github.token }}
