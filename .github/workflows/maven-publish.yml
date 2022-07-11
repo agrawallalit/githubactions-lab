@@ -31,9 +31,13 @@ jobs:
 
     - name: Build and Deploy with Maven
       run: |
-        env
+        #env
         echo "$tag"
-        echo "$new_tag"
+        echo "$newtag"
+
+      env:
+        tag: ${{ steps.tags.outputs.tag }}
+        newtag: ${{ steps.tags.outputs.new_tag }}
       
 
 #    - name: Publish to GitHub Packages Apache Maven
