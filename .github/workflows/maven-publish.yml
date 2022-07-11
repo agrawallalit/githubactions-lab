@@ -42,3 +42,12 @@ jobs:
         tag: ${{ steps.tags.outputs.tag }}
         newtag: ${{ steps.tags.outputs.new_tag }}
         GITHUB_TOKEN: ${{ github.token }}
+
+    - name: Create Release
+      uses: elgohr/Github-Release-Action@v4
+      
+      env:
+        GITHUB_TOKEN: ${{ secrets.ACTIONS_TOKEN }}
+
+      with:
+        title: ${{ steps.tags.outputs.new_tag }}
