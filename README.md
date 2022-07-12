@@ -1,1 +1,1 @@
-"This is a demo Maven project for github Actions" 
+"This is a demo Maven project for github Actions." 
